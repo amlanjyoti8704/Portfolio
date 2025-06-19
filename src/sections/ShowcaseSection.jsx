@@ -101,7 +101,7 @@ function ShowcaseSection() {
                     <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#MySQL</li>
                 </ul>
             </div>
-            <a className='order-1 md:order-2' href="https://test-project-3ai1.vercel.app/" target='_blank'>
+            <a className='order-1 md:order-2' href="https://inventory-management-system-six-zeta.vercel.app/" target='_blank'>
                 <img
                     src="/images/myProject1.png"
                     alt="Inventory Management System"
