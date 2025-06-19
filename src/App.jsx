@@ -2,7 +2,11 @@ import React from 'react'
 import Hero from './sections/Hero'
 import ShowcaseSection from './sections/ShowcaseSection'
 import Navbar from './components/Navbar'
-import TechUsed from './components/TechUsed'
+import TechUsed from './sections/TechUsed'
+import FeatureCards from './sections/FeatureCards'
+import AboutSection from './sections/AboutSection'
+import Contact from './sections/Contact'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -11,6 +15,10 @@ function App() {
       <Hero />
       <ShowcaseSection />
       <TechUsed />
+      {/* <FeatureCards /> */}
+      <AboutSection />
+      <Contact />
+      <Footer />
     </>
   )
 }
