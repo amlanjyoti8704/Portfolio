@@ -55,7 +55,7 @@ function ShowcaseSection() {
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#F08080] shadow-[0_0_12px_#F08080] z-40" />
             <div class="h-[1px] left-1/4 right-1/2 bg-[#F08080] shadow-[0_0_30px_5px_#F08080] absolute top-1/2 hidden md:block"></div>
-            <a href="hero">
+            <a href="#hero">
             <img
                 src="/images/myProject4-tilted-monitor.png"
                 alt="Netflix Clone"
