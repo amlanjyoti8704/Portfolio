@@ -85,7 +85,7 @@ function Hero() {
                             <h3>
                             <TypeAnimation
                                 sequence={[
-                                `Hi, I'm Amlan, a developer based in India with a passion for code.`,
+                                `Hi, I'm Amlan Jyoti, a developer based in India with a passion for code.`,
                                 2000,
                                 `I enjoy transforming complex problems into elegant, scalable solutions.`,
                                 2000]}
@@ -111,6 +111,13 @@ function Hero() {
                     </Canvas>
                     <div className="md:h-full max-h-[50vh] hero-3d-layout">
                         <Robo />
+                    </div>
+                    <div className='md:z-20 -z-10 flex-block xl:hidden h-65 w-55 md:h-100 md:w-75 rounded-full bg-[#0d0317] justify-center items-center absolute top-1/3 md:top-9/19 left-1/2 md:left-3/4 -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_0_60px_#4a2272]'>
+                        <img 
+                            src="/images/profile_image3.png" 
+                            alt="Profile_image" 
+                            className='md:z-30 w-full h-full object-cover rounded-b-full overflow-t-visible md:transition-transform md:duration-400 md:ease-in-out md:hover:scale-110 origin-bottom'
+                        />
                     </div>
                 </figure>
             </div>

@@ -99,7 +99,7 @@ section {
   }
 
   .hero-3d-layout {
-    @apply md:w-[100vw] lg:w-[70%] w-full h-full min-h-[50vh] absolute lg:top-25 md:top-30 top-23 lg:-right-50 md:-right-70 -right-13;
+    @apply hidden xl:block md:w-[100vw] lg:w-[70%] w-full h-full min-h-[50vh] absolute lg:top-25 md:top-30 top-23 lg:-right-50 md:-right-70 -right-13;
   }
 
   .glow-canvas {

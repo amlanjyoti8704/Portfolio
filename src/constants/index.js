@@ -44,10 +44,10 @@ const navLinks = [
   ];
   
   const counterItems = [
-    { value: 0, suffix: "+", label: "Years of Experience" },
-    { value: 20, suffix: "+", label: "Satisfied Clients" },
-    { value: 4, suffix: "+", label: "Completed Projects" },
-    { value: 90, suffix: "%", label: "Client Retention Rate" },
+    { value: 2, suffix: "+", label: "Years of Coding Experience" },
+    { value: 4, suffix: "+", label: "Personal & Academic Projects" },
+    { value: 5, suffix: "+", label: "Technical Certifications" },
+    { value: 95, suffix: "%", label: "Learning Consistency Rate" },
   ];
   
   const logoIconsList = [
