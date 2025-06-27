@@ -1,5 +1,6 @@
 import React from 'react'
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import Hero from './sections/Hero'
 import ShowcaseSection from './sections/ShowcaseSection'
 import Navbar from './components/Navbar'
@@ -21,6 +22,7 @@ function App() {
       <Contact />
       <Footer />
       <SpeedInsights />
+      <Analytics />
     </>
   )
 }

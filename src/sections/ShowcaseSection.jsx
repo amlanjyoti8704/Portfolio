@@ -115,7 +115,7 @@ function ShowcaseSection() {
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
             <div class="h-[1px] left-1/4 right-1/2 bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131] absolute top-1/2 hidden md:block"></div>
-            <a href="https://aflix8704.netlify.app/" target='_blank'>
+            <a href="https://project2-kohl-five.vercel.app/" target='_blank'>
             <img
                 src="/images/myProject2-tilted.png"
                 alt="Netflix Clone"
