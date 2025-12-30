@@ -51,6 +51,37 @@ function ShowcaseSection() {
       <div className="relative pt-20 max-w-full grid md:grid-rows gap-20 items-center z-10">
 
         {/* Project 1 */}
+        <div ref={project2Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
+            {/* Optional Dot at Center */}
+            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#11428d] shadow-[0_0_12px_#11428d] z-40" />
+            <div class="h-[1px] right-1/4 left-1/2 bg-[#595959] shadow-[0_0_30px_5px_#595959] absolute top-1/2 hidden md:block"></div>
+            <div class="md:w-[40vw] w-[80vw] order-2 md:order-1">
+                <h3 class="text-[#11428d] font-bold text-2xl md:text-4xl">Rozgar</h3>
+                <span class="text-[#87CEFA] text-base md:text-lg">(Web app for Rozgar)</span>
+                <p class="text-justify text-sm md:text-base mt-2">
+                    Rozgar is a web-based platform designed to bridge the gap between students and internship opportunities. It helps users explore, apply for, and manage internships through a simple and intuitive interface. The platform focuses on enhancing employability by providing structured access to internships, skill-based opportunities, and career growth resources. Built with modern web technologies, Rozgar ensures a smooth user experience, responsive design, and efficient handling of user data, making it a reliable solution for students seeking practical industry exposure.                </p>
+                <ul class="flex flex-wrap gap-2 mt-2">
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#express</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwind</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#css</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#javascript</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mongodb</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#clerk</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
+                </ul>
+            </div>
+            <a className='order-1 md:order-2' href="https://intern-bano-ic4t2hu6f-amlans-projects-9970f974.vercel.app/" target='_blank'>
+                <img
+                    src="/images/myProject5.png"
+                    alt="RozgarBano"
+                    className="max-w-[38vw] object-contain mb-6 drop-shadow-[0_0_30px_#87CEFA] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
+                />
+            </a>
+        </div>
+
+
+        {/* Project 2 */}
         <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#F08080] shadow-[0_0_12px_#F08080] z-40" />
@@ -58,7 +89,7 @@ function ShowcaseSection() {
             <a href="#hero">
             <img
                 src="/images/myProject4-tilted-monitor.png"
-                alt="Netflix Clone"
+                alt="Portfolio"
                 className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#595959] transition-transform duration-300 ease-in-out hover:scale-105"
             />
             </a>
@@ -81,7 +112,7 @@ function ShowcaseSection() {
             </div>
         </div>
 
-        {/* Project 2 */}
+        {/* Project 3 */}
         <div ref={project2Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
@@ -110,7 +141,7 @@ function ShowcaseSection() {
             </a>
         </div>
 
-        {/* Project 3 */}
+        {/* Project 4 */}
         <div ref={project3Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
@@ -136,7 +167,7 @@ function ShowcaseSection() {
             </div>
         </div>
 
-        {/* Project 4 */}
+        {/* Project 5 */}
         <div ref={project4Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
