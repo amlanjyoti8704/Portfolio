@@ -72,7 +72,7 @@ function ShowcaseSection() {
                     <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
                 </ul>
             </div>
-            <a className='order-1 md:order-2' href="https://intern-bano-ic4t2hu6f-amlans-projects-9970f974.vercel.app/" target='_blank'>
+            <a className='order-1 md:order-2' href="https://intern-bano-eight.vercel.app/" target='_blank'>
                 <img
                     src="/images/project_5.png"
                     alt="RozgarBano"
