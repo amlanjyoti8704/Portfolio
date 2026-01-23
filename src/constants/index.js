@@ -44,8 +44,8 @@ const navLinks = [
   ];
   
   const counterItems = [
-    { value: 2, suffix: "+", label: "Years of Coding Experience" },
-    { value: 4, suffix: "+", label: "Personal & Academic Projects" },
+    { value: 3, suffix: "+", label: "Years of Coding Experience" },
+    { value: 7, suffix: "+", label: "Personal & Academic Projects" },
     { value: 5, suffix: "+", label: "Technical Certifications" },
     { value: 95, suffix: "%", label: "Learning Consistency Rate" },
   ];

@@ -14,6 +14,7 @@ function ShowcaseSection() {
     const project3Ref=useRef(null);
     const project4Ref=useRef(null);
     const project5Ref=useRef(null);
+    const project6Ref=useRef(null);
 
     useGSAP(() => {
         gsap.fromTo(sectionRef.current, 
@@ -39,7 +40,7 @@ function ShowcaseSection() {
             );
         });
     }
-    , [sectionRef, project1Ref, project2Ref, project3Ref, project4Ref, project5Ref]);
+    , [sectionRef, project1Ref, project2Ref, project3Ref, project4Ref, project5Ref, project6Ref]);
 
   return (
     <section id="work" ref={sectionRef} className="relative w-full bg-black pt-20 px-4 md:px-12 overflow-hidden">
@@ -50,6 +51,45 @@ function ShowcaseSection() {
       </h2>
 
       <div className="relative pt-20 max-w-full grid md:grid-rows gap-20 items-center z-10">
+
+
+        {/* Project 6 */}
+        <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
+            {/* Optional Dot at Center */}
+            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#f75802] shadow-[0_0_12px_#F08080] z-40" />
+            <div class="h-[1px] left-1/4 right-1/2 bg-[#f86401] shadow-[0_0_30px_5px_#F08080] absolute top-1/2 hidden md:block"></div>
+            <a href="https://blogger-aj.vercel.app/">
+            <img
+                src="/images/project6.png"
+                alt="Blogger"
+                className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#c58d1c] transition-transform duration-300 ease-in-out hover:scale-105"
+            />
+            </a>
+            
+            <div class="md:w-[40vw] w-[80vw]">
+                <h3 class="text-[#d38129f5] font-bold text-2xl md:text-4xl">Blogger</h3>
+                <span class="text-[#bea062] text-base md:text-lg">(Full-Stack Blogging Platform)</span>
+                <p class="text-justify text-sm md:text-base mt-2">
+                    Blogger is a full-stack web application that allows users to create,
+                    manage, and share blog posts in a clean and intuitive interface. It
+                    features user authentication, role-based access control, post creation,
+                    editing, deletion, and image uploads. The platform is designed with a
+                    modern UI and focuses on performance, security, and scalability, making
+                    it suitable for real-world blogging and content management use cases.
+                </p>
+                <ul class="flex flex-wrap gap-2 mt-2">
+                   <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwindcss</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#node.js</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#express.js</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mongodb</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#jwt-auth</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#cloudinary</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mern</li>
+                </ul>
+            </div>
+        </div>
+
 
         {/* Project 1 */}
         <div ref={project5Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
