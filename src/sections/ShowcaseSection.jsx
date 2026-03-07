@@ -15,6 +15,8 @@ function ShowcaseSection() {
     const project4Ref=useRef(null);
     const project5Ref=useRef(null);
     const project6Ref=useRef(null);
+    const project7Ref=useRef(null);
+    const project8Ref=useRef(null);
 
     useGSAP(() => {
         gsap.fromTo(sectionRef.current, 
@@ -22,7 +24,7 @@ function ShowcaseSection() {
             { opacity: 1, y: 0, duration: 1, ease: 'power2.inOut' }
         );
 
-        const projects = [project1Ref, project2Ref, project3Ref, project4Ref];
+        const projects = [project1Ref, project2Ref, project3Ref, project4Ref,project5Ref,project6Ref,project7Ref,project8Ref];
         projects.forEach((ref, index) => {
             gsap.fromTo(ref.current, 
                 { opacity: 0, y: 50 }, 
@@ -40,7 +42,7 @@ function ShowcaseSection() {
             );
         });
     }
-    , [sectionRef, project1Ref, project2Ref, project3Ref, project4Ref, project5Ref, project6Ref]);
+    , [sectionRef, project1Ref, project2Ref, project3Ref, project4Ref, project5Ref, project6Ref, project7Ref, project8Ref]);
 
   return (
     <section id="work" ref={sectionRef} className="relative w-full bg-black pt-20 px-4 md:px-12 overflow-hidden">
@@ -51,7 +53,72 @@ function ShowcaseSection() {
       </h2>
 
       <div className="relative pt-20 max-w-full grid md:grid-rows gap-20 items-center z-10">
+        
+        {/* {Project 8} */}
+        <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
+            {/* Optional Dot at Center */}
+            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#ffffff] shadow-[0_0_12px_#F08080] z-40" />
+            <div class="h-[1px] left-1/4 right-1/2 bg-[#ffffff] shadow-[0_0_30px_5px_#7e7a7a] absolute top-1/2 hidden md:block"></div>
+            <a href="https://eventmanagement-puce-nine.vercel.app/">
+            <img
+                src="/images/project8.png"
+                alt="EventManagement"
+                className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#7e7a7a] transition-transform duration-300 ease-in-out hover:scale-105"
+            />
+            </a>
+            
+            <div class="md:w-[40vw] w-[80vw]">
+                <h3 class="text-[#939292f5] font-bold text-2xl md:text-4xl">EventHub</h3>
+                <span class="text-[#5f5f5f] text-base md:text-lg">(Full-Stack Event Management Platform)</span>
+                <p class="text-justify text-sm md:text-base mt-2">
+                    EventHub is a full-stack web platform designed to simplify event discovery, ticket booking, and event management. It allows users to browse events, book tickets securely, and receive QR-based digital tickets via email. The platform integrates a complete booking workflow including online payments, automated ticket generation, and real-time ticket verification.
+                    EventHub also includes an admin dashboard that enables authorized administrators to create, update, and manage events efficiently.
+                </p>
+                <ul class="flex flex-wrap gap-2 mt-2">
+                   <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#next js</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwindcss</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#node.js</li>
+                    {/* <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#express.js</li> */}
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mongodb</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#github OAuth</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#cloudinary</li>
+                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#stripe</li>
+                </ul>
+            </div>
+        </div>
 
+        {/* {Project 7} */}
+        <div ref={project5Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
+            {/* Optional Dot at Center */}
+            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#3383fb] shadow-[0_0_12px_#11428d] z-40" />
+            <div class="h-[1px] right-1/4 left-1/2 bg-[#609bd3] shadow-[0_0_30px_5px_#606cd3] absolute top-1/2 hidden md:block"></div>
+            <div class="md:w-[40vw] w-[80vw] order-2 md:order-1">
+                <h3 class="text-[#6b40c9] font-bold text-2xl md:text-4xl">Mockly</h3>
+                <span class="text-[#b2a5d0] text-base md:text-lg">(Web app for Interview Preparation)</span>
+                <p class="text-justify text-sm md:text-base mt-2">
+                    Mockly is an AI-powered mock interview platform designed to help students and job seekers practice and improve their interview skills in a realistic environment. The platform simulates real interview scenarios by generating role-specific questions and allowing users to respond and evaluate their performance. It focuses on building confidence and improving communication by providing structured interview sessions and intelligent feedback on responses.
+                    The application offers a smooth and interactive user experience where users can select job roles, attempt interview questions, and review insights to identify their strengths and areas for improvement. 
+                </p>
+                
+                <ul class="flex flex-wrap gap-2 mt-2">
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#next js</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwindcss</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#Vapi</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#OpenAI api</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#TypeScript</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#Firebase</li>
+                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#Spline</li>
+                    {/* <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li> */}
+                </ul>
+            </div>
+            <a className='order-1 md:order-2' href="https://intern-bano-eight.vercel.app/" target='_blank'>
+                <img
+                    src="/images/project7.png"
+                    alt="RozgarBano"
+                    className="max-w-[38vw] object-contain mb-6 drop-shadow-[0_0_30px_#846bc9] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
+                />
+            </a>
+        </div>
 
         {/* Project 6 */}
         <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">

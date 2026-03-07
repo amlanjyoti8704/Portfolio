@@ -45,9 +45,9 @@ const navLinks = [
   
   const counterItems = [
     { value: 3, suffix: "+", label: "Years of Coding Experience" },
-    { value: 7, suffix: "+", label: "Personal & Academic Projects" },
+    { value: 10, suffix: "+", label: "Personal & Academic Projects" },
     { value: 5, suffix: "+", label: "Technical Certifications" },
-    { value: 95, suffix: "%", label: "Learning Consistency Rate" },
+    { value: 96, suffix: "%", label: "Learning Consistency Rate" },
   ];
   
   const logoIconsList = [
@@ -187,7 +187,7 @@ const navLinks = [
       logoPath: "/images/logos/Birla_Institute_of_Technology_Mesra.png",
       title: "Graduation",
       date: "August 2023 - Present",
-      score: "CGPA: ",
+      score: "CGPA: 8.51",
       responsibilities: [
         "I’m pursuing a B.Tech in Computer Science and Engineering, developing a strong foundation in algorithms, software development, and system design.",
         "I’m actively building skills in web development, databases, and backend technologies to solve real-world problems.",
