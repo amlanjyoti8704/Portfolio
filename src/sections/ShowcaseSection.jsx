@@ -59,7 +59,7 @@ function ShowcaseSection() {
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#ffffff] shadow-[0_0_12px_#F08080] z-40" />
             <div class="h-[1px] left-1/4 right-1/2 bg-[#ffffff] shadow-[0_0_30px_5px_#7e7a7a] absolute top-1/2 hidden md:block"></div>
-            <a href="https://eventmanagement-puce-nine.vercel.app/">
+            <a href="https://eventmanagement-puce-nine.vercel.app/" target='_blank'>
             <img
                 src="/images/project8.png"
                 alt="EventManagement"
@@ -111,10 +111,10 @@ function ShowcaseSection() {
                     {/* <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li> */}
                 </ul>
             </div>
-            <a className='order-1 md:order-2' href="https://intern-bano-eight.vercel.app/" target='_blank'>
+            <a className='order-1 md:order-2' href="https://mockly-gamma.vercel.app/" target='_blank'>
                 <img
                     src="/images/project7.png"
-                    alt="RozgarBano"
+                    alt="Mockly"
                     className="max-w-[38vw] object-contain mb-6 drop-shadow-[0_0_30px_#846bc9] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
                 />
             </a>
@@ -125,7 +125,7 @@ function ShowcaseSection() {
             {/* Optional Dot at Center */}
             <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#f75802] shadow-[0_0_12px_#F08080] z-40" />
             <div class="h-[1px] left-1/4 right-1/2 bg-[#f86401] shadow-[0_0_30px_5px_#F08080] absolute top-1/2 hidden md:block"></div>
-            <a href="https://blogger-aj.vercel.app/">
+            <a href="https://blogger-aj.vercel.app/" target='_blank'>
             <img
                 src="/images/project6.png"
                 alt="Blogger"
@@ -295,7 +295,7 @@ function ShowcaseSection() {
                     <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#spline</li>
                 </ul>
             </div>
-            <a className='order-1 md:order-2' href="#" target='_blank'>
+            <a className='order-1 md:order-2' href="https://github.com/amlanjyoti8704/Hackfest-Event-Sentiment-Analysis" target='_blank'>
             <img
                 src="/images/myProject3-mobile-tilted.png"
                 alt="Netflix Clone"
