@@ -12,6 +12,10 @@ const navLinks = [
       link: "#about",
     },
     // {
+    //   name: "Coding Profile",
+    //   link: "/profile"
+    // }
+    // {
     //   name: "Skills",
     //   link: "#skills",
     // },
