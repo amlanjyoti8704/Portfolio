@@ -1,32 +1,168 @@
-import React, { useRef } from 'react';
-import {gsap} from 'gsap';
+import React, { useRef, useState, useEffect } from 'react';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 function ShowcaseSection() {
+    const sectionRef = useRef(null);
+    const [showAll, setShowAll] = useState(false);
 
-    const sectionRef=useRef(null);
-    const project1Ref=useRef(null);
-    const project2Ref=useRef(null);
-    const project3Ref=useRef(null);
-    const project4Ref=useRef(null);
-    const project5Ref=useRef(null);
-    const project6Ref=useRef(null);
-    const project7Ref=useRef(null);
-    const project8Ref=useRef(null);
+    // Grouping project refs into an array of refs dynamically
+    const projectRefs = useRef([]);
+    projectRefs.current = [];
+
+    const addToRefs = (el) => {
+        if (el && !projectRefs.current.includes(el)) {
+            projectRefs.current.push(el);
+        }
+    };
+
+    // Full static data for your projects
+    const allProjects = [
+        {
+            id: 9,
+            title: "Wishflix",
+            type: "(Media Streaming Platform)",
+            desc: "Wishflix is a media streaming platform that allows users to browse and watch their favorite movies, videos and photos. It provides a seamless viewing experience with a user-friendly interface and a wide selection of content which can be adited by the admin. Each account can hold multiple profiles, each containing a personalized watchlist and viewing history.",
+            tags: ["next js", "node.js", "postgresql", "tailwindcss", "supabase", "redis", "docker", "typescript", "vector embeddings", "gemini api"],
+            imgSrc: "/images/project_9.png",
+            link: "",
+            dotColor: "bg-[#f23838]",
+            shadowColor: "shadow-[0_0_12px_#ba5a5a]",
+            lineColor: "bg-[#f23838] shadow-[0_0_30px_4px_#f23838]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#245838]",
+            isLeft: true
+        },
+        {
+            id: 8,
+            title: "EventHub",
+            type: "(Full-Stack Event Management Platform)",
+            desc: "EventHub is a full-stack web platform designed to simplify event discovery, ticket booking, and event management. It allows users to browse events, book tickets securely, and receive QR-based digital tickets via email. The platform integrates a complete booking workflow including online payments, automated ticket generation, and real-time ticket verification.",
+            tags: ["next js", "tailwindcss", "node.js", "mongodb", "github OAuth", "cloudinary", "stripe"],
+            imgSrc: "/images/project8.png",
+            link: "https://eventmanagement-puce-nine.vercel.app/",
+            dotColor: "bg-[#ffffff]",
+            shadowColor: "shadow-[0_0_12px_#F08080]",
+            lineColor: "bg-[#ffffff] shadow-[0_0_30px_5px_#7e7a7a]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#7e7a7a]",
+            isLeft: false
+        },
+        {
+            id: 7,
+            title: "Mockly",
+            type: "(Web app for Interview Preparation)",
+            desc: "Mockly is an AI-powered mock interview platform designed to help students and job seekers practice and improve their interview skills in a realistic environment. The platform simulates real interview scenarios by generating role-specific questions and allowing users to respond and evaluate their performance.",
+            tags: ["next js", "tailwindcss", "Vapi", "OpenAI api", "TypeScript", "Firebase", "Spline"],
+            imgSrc: "/images/project7.png",
+            link: "https://mockly-gamma.vercel.app/",
+            dotColor: "bg-[#3383fb]",
+            shadowColor: "shadow-[0_0_12px_#11428d]",
+            lineColor: "bg-[#609bd3] shadow-[0_0_30px_5px_#606cd3]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#846bc9]",
+            isLeft: true
+        },
+        {
+            id: 6,
+            title: "Blogger",
+            type: "(Full-Stack Blogging Platform)",
+            desc: "Blogger is a full-stack web application that allows users to create, manage, and share blog posts in a clean and intuitive interface. It features user authentication, role-based access control, post creation, editing, deletion, and image uploads.",
+            tags: ["react.js", "tailwindcss", "node.js", "express.js", "mongodb", "jwt-auth", "cloudinary", "mern"],
+            imgSrc: "/images/project6.png",
+            link: "https://blogger-aj.vercel.app/",
+            dotColor: "bg-[#f75802]",
+            shadowColor: "shadow-[0_0_12px_#F08080]",
+            lineColor: "bg-[#f86401] shadow-[0_0_30px_5px_#F08080]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#c58d1c]",
+            isLeft: false
+        },
+        {
+            id: 5,
+            title: "Rozgar",
+            type: "(Web app for Rozgar)",
+            desc: "Rozgar is a web-based platform designed to bridge the gap between students and internship opportunities. It helps users explore, apply for, and manage internships through a simple and intuitive interface. The platform focuses on enhancing employability by providing structured access to internships.",
+            tags: ["react.js", "express", "tailwind", "css", "javascript", "mongodb", "clerk", "html"],
+            imgSrc: "/images/project_5.png",
+            link: "https://intern-bano-eight.vercel.app/",
+            dotColor: "bg-[#11428d]",
+            shadowColor: "shadow-[0_0_12px_#11428d]",
+            lineColor: "bg-[#595959] shadow-[0_0_30px_5px_#595959]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#87CEFA]",
+            isLeft: true
+        },
+        {
+            id: 4,
+            title: "Portfolio",
+            type: "(Personal Portfolio Website)",
+            desc: "This is a personal portfolio website designed to showcase my projects, skills, and experience in web development and software engineering. Built with modern technologies like React, Tailwind CSS, javascript, spline and figma.",
+            tags: ["react.js", "tailwind", "css", "javascript", "html", "figma", "spline", "three.js"],
+            imgSrc: "/images/myProject4-tilted-monitor.png",
+            link: "#hero",
+            dotColor: "bg-[#F08080]",
+            shadowColor: "shadow-[0_0_12px_#F08080]",
+            lineColor: "bg-[#F08080] shadow-[0_0_30px_5px_#F08080]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#595959]",
+            isLeft: false
+        },
+        {
+            id: 3,
+            title: "IT Consumables",
+            type: "(Inventory Management System)",
+            desc: "This is a full-stack Inventory Management System designed to efficiently manage IT consumables. It allows users to track items, manage categories, handle purchase orders, and issue/return items with role-based access control.",
+            tags: ["react.js", "tailwind", "css", "javascript", "ASP.NET (C#)", "html", "MySQL"],
+            imgSrc: "/images/myProject1.png",
+            link: "https://inventory-management-system-six-zeta.vercel.app/",
+            dotColor: "bg-[#FF3131]",
+            shadowColor: "shadow-[0_0_12px_#FF3131]",
+            lineColor: "bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#11428d]",
+            isLeft: true
+        },
+        {
+            id: 2,
+            title: "Netflix Clone",
+            type: "(Streaming Platform)",
+            desc: "Built a Netflix clone using HTML, CSS, Tailwind and JavaScript. The platform offers a responsive design, dynamic content display, and smooth interactions, mimicking the layout and features of a popular streaming service.",
+            tags: ["tailwind", "css", "javascript", "html"],
+            imgSrc: "/images/myProject2-tilted.png",
+            link: "https://project2-kohl-five.vercel.app/",
+            dotColor: "bg-[#FF3131]",
+            shadowColor: "shadow-[0_0_12px_#FF3131]",
+            lineColor: "bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#FFC72C]",
+            isLeft: false
+        },
+        {
+            id: 1,
+            title: "Sentiment Analysis",
+            type: "(ML Project)",
+            desc: "This project analyzes public sentiment around Hackfest events using natural language processing techniques. It collects and processes text data to classify opinions as positive or negative, providing insights into audience perception.",
+            tags: ["react.js", "tailwind", "css", "javascript", "html", "spline"],
+            imgSrc: "/images/myProject3-mobile-tilted.png",
+            link: "https://github.com/amlanjyoti8704/Hackfest-Event-Sentiment-Analysis",
+            dotColor: "bg-[#FF3131]",
+            shadowColor: "shadow-[0_0_12px_#FF3131]",
+            lineColor: "bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131]",
+            imgDropShadow: "drop-shadow-[0_0_30px_#800080]",
+            isLeft: true,
+            isMobileImg: true
+        }
+    ];
+
+    const visibleProjects = showAll ? allProjects : allProjects.slice(0, 5);
 
     useGSAP(() => {
         gsap.fromTo(sectionRef.current, 
             { opacity: 0, y: 0 }, 
             { opacity: 1, y: 0, duration: 1, ease: 'power2.inOut' }
         );
+    }, { dependencies: [], scope: sectionRef });
 
-        const projects = [project1Ref, project2Ref, project3Ref, project4Ref,project5Ref,project6Ref,project7Ref,project8Ref];
-        projects.forEach((ref, index) => {
-            gsap.fromTo(ref.current, 
+    useGSAP(() => {
+        projectRefs.current.forEach((el) => {
+            if (!el) return;
+            gsap.fromTo(el, 
                 { opacity: 0, y: 50 }, 
                 { 
                     opacity: 1, 
@@ -34,281 +170,118 @@ function ShowcaseSection() {
                     duration: 0.3, 
                     ease: 'power2.inOut', 
                     scrollTrigger: {
-                        trigger: ref.current,
-                        start: 'top center',
+                        trigger: el,
+                        start: 'top center+=100',
                         toggleActions: 'play none none reverse'
                     }
                 }
             );
         });
-    }
-    , [sectionRef, project1Ref, project2Ref, project3Ref, project4Ref, project5Ref, project6Ref, project7Ref, project8Ref]);
+    }, { dependencies: [visibleProjects], scope: sectionRef });
 
-  return (
-    <section id="work" ref={sectionRef} className="relative w-full bg-black pt-20 px-4 md:px-12 overflow-hidden">
+    // Force ScrollTrigger calculations up to date when the array modifications happen
+    useEffect(() => {
+        ScrollTrigger.refresh();
+    }, [showAll]);
 
-      {/* Section Title */}
-      <h2 className="text-center text-4xl md:text-5xl font-bold text-white pb-5 relative z-20 drop-shadow-[0_0_15px_#F08080]">
-        Latest Works
-      </h2>
+    const handleToggleWorks = () => {
+        if (showAll) {
+            const elementsToCollapse = projectRefs.current.slice(5);
+            const aboutSection = document.getElementById('about');
 
-      <div className="relative pt-20 max-w-full grid md:grid-rows gap-20 items-center z-10">
-        
-        {/* {Project 8} */}
-        <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#ffffff] shadow-[0_0_12px_#F08080] z-40" />
-            <div class="h-[1px] left-1/4 right-1/2 bg-[#ffffff] shadow-[0_0_30px_5px_#7e7a7a] absolute top-1/2 hidden md:block"></div>
-            <a href="https://eventmanagement-puce-nine.vercel.app/" target='_blank'>
-            <img
-                src="/images/project8.png"
-                alt="EventManagement"
-                className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#7e7a7a] transition-transform duration-300 ease-in-out hover:scale-105"
-            />
-            </a>
+            // Find target top scroll coordinate cleanly
+            const targetScrollY = aboutSection 
+                ? aboutSection.getBoundingClientRect().top - 200 + window.scrollY 
+                : sectionRef.current?.getBoundingClientRect().top - 200 + window.scrollY; 
+
+            // 1. Instantly begin smooth browser scrolling back up to the anchor targets
+            window.scrollTo({
+                top: targetScrollY,
+                behavior: 'smooth'
+            });
+
+            // 2. Run the visual fade out timeline alongside the window scrolling movement
+            gsap.to(elementsToCollapse, {
+                opacity: 0,
+                y: 30,
+                duration: 0.4,
+                ease: 'power2.out',
+                onComplete: () => {
+                    // 3. Drop elements from DOM only after viewport safely moves away
+                    setShowAll(false);
+                }
+            });
+        } else {
+            setShowAll(true);
+        }
+    };
+
+    return (
+        <section id="work" ref={sectionRef} className="relative w-full bg-black pt-20 pb-20 px-4 md:px-12 overflow-hidden">
             
-            <div class="md:w-[40vw] w-[80vw]">
-                <h3 class="text-[#939292f5] font-bold text-2xl md:text-4xl">EventHub</h3>
-                <span class="text-[#5f5f5f] text-base md:text-lg">(Full-Stack Event Management Platform)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                    EventHub is a full-stack web platform designed to simplify event discovery, ticket booking, and event management. It allows users to browse events, book tickets securely, and receive QR-based digital tickets via email. The platform integrates a complete booking workflow including online payments, automated ticket generation, and real-time ticket verification.
-                    EventHub also includes an admin dashboard that enables authorized administrators to create, update, and manage events efficiently.
-                </p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                   <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#next js</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwindcss</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#node.js</li>
-                    {/* <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#express.js</li> */}
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mongodb</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#github OAuth</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#cloudinary</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#stripe</li>
-                </ul>
+            {/* Section Title */}
+            <h2 className="text-center text-4xl md:text-5xl font-bold text-white pb-5 relative z-20 drop-shadow-[0_0_15px_#F08080]">
+                Latest Works
+            </h2>
+
+            <div className="relative pt-20 max-w-full grid md:grid-rows gap-20 items-center z-10">
+                {visibleProjects.map((project) => (
+                    <div 
+                        key={project.id}
+                        ref={addToRefs} 
+                        className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10"
+                    >
+                        {/* Optional Dot at Center */}
+                        <div className={`hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full ${project.dotColor} ${project.shadowColor} z-40`} />
+                        <div className={`h-[1px] absolute top-1/2 hidden md:block ${project.isLeft ? 'right-1/4 left-1/2' : 'left-1/4 right-1/2'} ${project.lineColor}`}></div>
+                        
+                        {/* Text Block */}
+                        <div className={`md:w-[40vw] w-[80vw] ${project.isLeft ? 'order-2 md:order-1' : 'order-2 md:order-2'}`}>
+                            <h3 className={`${project.id === 9 ? 'text-[#f23838]' : project.id === 8 ? 'text-[#939292f5]' : project.id === 7 ? 'text-[#6b40c9]' : project.id === 6 ? 'text-[#d38129f5]' : project.id === 5 ? 'text-[#11428d]' : project.id === 4 ? 'text-[#595959]' : project.id === 3 ? 'text-[#11428d]' : project.id === 2 ? 'text-[#FFC72C]' : 'text-[#DA70D6]'} font-bold text-2xl md:text-4xl`}>
+                                {project.title}
+                            </h3>
+                            <span className={`${project.id === 9 ? 'text-[#f7a6a6]' : project.id === 8 ? 'text-[#5f5f5f]' : project.id === 7 ? 'text-[#b2a5d0]' : project.id === 6 ? 'text-[#bea062]' : project.id === 5 ? 'text-[#87CEFA]' : project.id === 4 ? 'text-[#818589]' : project.id === 3 ? 'text-[#87CEFA]' : project.id === 2 ? 'text-[#FF3131]' : 'text-[#592db9]'} text-base md:text-lg block`}>
+                                {project.type}
+                            </span>
+                            <p className="text-justify text-sm md:text-base mt-2 text-gray-300">
+                                {project.desc}
+                            </p>
+                            
+                            <ul className="flex flex-wrap gap-2 mt-2 justify-center md:justify-start">
+                                {project.tags.map((tag, idx) => (
+                                    <li key={idx} className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base text-gray-400">
+                                        #{tag}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        
+                        {/* Image Block */}
+                        <a className={`${project.isLeft ? 'order-1 md:order-2' : 'order-1 md:order-1'}`} href={project.link} target="_blank" rel="noopener noreferrer">
+                            <img 
+                                src={project.imgSrc} 
+                                alt={project.title} 
+                                className={`${project.isMobileImg ? 'max-w-[18vw]' : 'max-w-[38vw]'} object-contain mb-6 ${project.imgDropShadow} transition-transform duration-300 ease-in-out hover:scale-105`}
+                            />
+                        </a>
+                    </div>
+                ))}
+
+                {/* ⬇️ Vertical Center Line */}
+                <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-[3px] bg-gradient-to-b from-[#F08080]/5 via-[#FF3131] to-[#FF3131]/10 opacity-80 -z-10 pointer-events-none" />
             </div>
-        </div>
 
-        {/* {Project 7} */}
-        <div ref={project5Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#3383fb] shadow-[0_0_12px_#11428d] z-40" />
-            <div class="h-[1px] right-1/4 left-1/2 bg-[#609bd3] shadow-[0_0_30px_5px_#606cd3] absolute top-1/2 hidden md:block"></div>
-            <div class="md:w-[40vw] w-[80vw] order-2 md:order-1">
-                <h3 class="text-[#6b40c9] font-bold text-2xl md:text-4xl">Mockly</h3>
-                <span class="text-[#b2a5d0] text-base md:text-lg">(Web app for Interview Preparation)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                    Mockly is an AI-powered mock interview platform designed to help students and job seekers practice and improve their interview skills in a realistic environment. The platform simulates real interview scenarios by generating role-specific questions and allowing users to respond and evaluate their performance. It focuses on building confidence and improving communication by providing structured interview sessions and intelligent feedback on responses.
-                    The application offers a smooth and interactive user experience where users can select job roles, attempt interview questions, and review insights to identify their strengths and areas for improvement. 
-                </p>
-                
-                <ul class="flex flex-wrap gap-2 mt-2">
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#next js</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwindcss</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#Vapi</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#OpenAI api</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#TypeScript</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#Firebase</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#Spline</li>
-                    {/* <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li> */}
-                </ul>
+            {/* Expand / Collapse Control Button */}
+            <div className="flex justify-center mt-16 relative z-30">
+                <button 
+                    onClick={handleToggleWorks}
+                    className="px-8 py-3 rounded-full border border-[#FF3131] text-white font-medium bg-black hover:bg-[#FF3131] shadow-[0_0_15px_rgba(255,49,49,0.2)] hover:shadow-[0_0_25px_rgba(255,49,49,0.6)] transition-all duration-300 ease-in-out active:scale-95"
+                >
+                    {showAll ? 'Show Less' : 'See All Works'}
+                </button>
             </div>
-            <a className='order-1 md:order-2' href="https://mockly-gamma.vercel.app/" target='_blank'>
-                <img
-                    src="/images/project7.png"
-                    alt="Mockly"
-                    className="max-w-[38vw] object-contain mb-6 drop-shadow-[0_0_30px_#846bc9] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
-                />
-            </a>
-        </div>
-
-        {/* Project 6 */}
-        <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#f75802] shadow-[0_0_12px_#F08080] z-40" />
-            <div class="h-[1px] left-1/4 right-1/2 bg-[#f86401] shadow-[0_0_30px_5px_#F08080] absolute top-1/2 hidden md:block"></div>
-            <a href="https://blogger-aj.vercel.app/" target='_blank'>
-            <img
-                src="/images/project6.png"
-                alt="Blogger"
-                className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#c58d1c] transition-transform duration-300 ease-in-out hover:scale-105"
-            />
-            </a>
-            
-            <div class="md:w-[40vw] w-[80vw]">
-                <h3 class="text-[#d38129f5] font-bold text-2xl md:text-4xl">Blogger</h3>
-                <span class="text-[#bea062] text-base md:text-lg">(Full-Stack Blogging Platform)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                    Blogger is a full-stack web application that allows users to create,
-                    manage, and share blog posts in a clean and intuitive interface. It
-                    features user authentication, role-based access control, post creation,
-                    editing, deletion, and image uploads. The platform is designed with a
-                    modern UI and focuses on performance, security, and scalability, making
-                    it suitable for real-world blogging and content management use cases.
-                </p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                   <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwindcss</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#node.js</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#express.js</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mongodb</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#jwt-auth</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#cloudinary</li>
-                    <li className="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mern</li>
-                </ul>
-            </div>
-        </div>
-
-
-        {/* Project 1 */}
-        <div ref={project5Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#11428d] shadow-[0_0_12px_#11428d] z-40" />
-            <div class="h-[1px] right-1/4 left-1/2 bg-[#595959] shadow-[0_0_30px_5px_#595959] absolute top-1/2 hidden md:block"></div>
-            <div class="md:w-[40vw] w-[80vw] order-2 md:order-1">
-                <h3 class="text-[#11428d] font-bold text-2xl md:text-4xl">Rozgar</h3>
-                <span class="text-[#87CEFA] text-base md:text-lg">(Web app for Rozgar)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                    Rozgar is a web-based platform designed to bridge the gap between students and internship opportunities. It helps users explore, apply for, and manage internships through a simple and intuitive interface. The platform focuses on enhancing employability by providing structured access to internships, skill-based opportunities, and career growth resources. Built with modern web technologies, Rozgar ensures a smooth user experience, responsive design, and efficient handling of user data, making it a reliable solution for students seeking practical industry exposure.                </p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#express</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwind</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#css</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#javascript</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#mongodb</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#clerk</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
-                </ul>
-            </div>
-            <a className='order-1 md:order-2' href="https://intern-bano-eight.vercel.app/" target='_blank'>
-                <img
-                    src="/images/project_5.png"
-                    alt="RozgarBano"
-                    className="max-w-[38vw] object-contain mb-6 drop-shadow-[0_0_30px_#87CEFA] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
-                />
-            </a>
-        </div>
-
-
-        {/* Project 2 */}
-        <div ref={project1Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#F08080] shadow-[0_0_12px_#F08080] z-40" />
-            <div class="h-[1px] left-1/4 right-1/2 bg-[#F08080] shadow-[0_0_30px_5px_#F08080] absolute top-1/2 hidden md:block"></div>
-            <a href="#hero">
-            <img
-                src="/images/myProject4-tilted-monitor.png"
-                alt="Portfolio"
-                className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#595959] transition-transform duration-300 ease-in-out hover:scale-105"
-            />
-            </a>
-            <div class="md:w-[40vw] w-[80vw]">
-                <h3 class="text-[#595959] font-bold text-2xl md:text-4xl">Portfolio</h3>
-                <span class="text-[#818589] text-base md:text-lg">(Personal Portfolio Website)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                This is a personal portfolio website designed to showcase my projects, skills, and experience in web development and software engineering. Built with modern technologies like React, Tailwind CSS, javascript, spline and figma, the site highlights my work in a clean and interactive layout. It serves as a central platform for potential employers and collaborators to learn more about me and explore my technical capabilities.</p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwind</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#css</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#javascript</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#figma</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#spline</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#three.js</li>
-
-                </ul>
-            </div>
-        </div>
-
-        {/* Project 3 */}
-        <div ref={project2Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
-            <div class="h-[1px] right-1/4 left-1/2 bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131] absolute top-1/2 hidden md:block"></div>
-            <div class="md:w-[40vw] w-[80vw] order-2 md:order-1">
-                <h3 class="text-[#11428d] font-bold text-2xl md:text-4xl">IT Consumables</h3>
-                <span class="text-[#87CEFA] text-base md:text-lg">(Inventory Management System)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                    This is a full-stack Inventory Management System designed to efficiently manage IT consumables. It allows users to track items, manage categories, handle purchase orders, and issue/return items with role-based access control. Built using React for the frontend, C# (ASP.NET Core) for the backend, and MySQL for data storage, the system ensures smooth and secure inventory operations.                </p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwind</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#css</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#javascript</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#ASP.NET (C#)</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#MySQL</li>
-                </ul>
-            </div>
-            <a className='order-1 md:order-2' href="https://inventory-management-system-six-zeta.vercel.app/" target='_blank'>
-                <img
-                    src="/images/myProject1.png"
-                    alt="Inventory Management System"
-                    className="max-w-[38vw] object-contain mb-6 drop-shadow-[0_0_30px_#11428d] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
-                />
-            </a>
-        </div>
-
-        {/* Project 4 */}
-        <div ref={project3Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
-            <div class="h-[1px] left-1/4 right-1/2 bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131] absolute top-1/2 hidden md:block"></div>
-            <a href="https://project2-kohl-five.vercel.app/" target='_blank'>
-            <img
-                src="/images/myProject2-tilted.png"
-                alt="Netflix Clone"
-                className="max-w-[38vw]  object-contain mb-6 drop-shadow-[0_0_30px_#FFC72C] transition-transform duration-300 ease-in-out hover:scale-105"
-            />
-            </a>
-            <div class="md:w-[40vw] w-[80vw]">
-                <h3 class="text-[#FFC72C] font-bold text-2xl md:text-4xl">Netflix Clone</h3>
-                <span class="text-[#FF3131] text-base md:text-lg">(Streaming Platform)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                    Built a Netflix clone using HTML, CSS, Tailwind and JavaScript. The platform offers a responsive design, dynamic content display, and smooth interactions, mimicking the layout and features of a popular streaming service for both movies and web series.                </p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwind</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#css</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#javascript</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
-                </ul>
-            </div>
-        </div>
-
-        {/* Project 5 */}
-        <div ref={project4Ref} className="flex flex-col md:flex-row items-center gap-5 md:justify-between text-center md:text-left md:items-center relative z-10">
-            {/* Optional Dot at Center */}
-            <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FF3131] shadow-[0_0_12px_#FF3131] z-40" />
-            <div class="h-[1px] right-1/8 left-1/2 bg-[#FF3131] shadow-[0_0_30px_5px_#FF3131] absolute top-1/2 hidden md:block"></div>
-        
-            <div class="md:w-[40vw] w-[80vw] order-2 md:order-1">
-                <h3 class="text-[#DA70D6] font-bold text-2xl md:text-4xl">Sentiment Analysis</h3>
-                <span class="text-[#592db9] text-base md:text-lg">(ML Project)</span>
-                <p class="text-justify text-sm md:text-base mt-2">
-                This project analyzes public sentiment around Hackfest events using natural language processing techniques. It collects and processes text data to classify opinions as positive or negative, providing insights into audience perception. Built with machine learning models, it helps organizers understand participant feedback and improve future events.</p>
-                <ul class="flex flex-wrap gap-2 mt-2">
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#react.js</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#tailwind</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#css</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#javascript</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#html</li>
-                    <li class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base">#spline</li>
-                </ul>
-            </div>
-            <a className='order-1 md:order-2' href="https://github.com/amlanjyoti8704/Hackfest-Event-Sentiment-Analysis" target='_blank'>
-            <img
-                src="/images/myProject3-mobile-tilted.png"
-                alt="Netflix Clone"
-                className="max-w-[18vw]  object-contain mb-6 drop-shadow-[0_0_30px_#800080] order-1 md:order-2 transition-transform duration-300 ease-in-out hover:scale-105"
-            />
-            </a>
-        </div>
-
-        {/* ⬇️ Vertical Center Line */}
-        <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-[3px] bg-gradient-to-b from-[#F08080]/5 via-[#FF3131] to-[#FF3131]/10 opacity-80  -z-10 pointer-events-none" />
-      </div>
-    </section>
-  );
+        </section>
+    );
 }
 
 export default ShowcaseSection;
